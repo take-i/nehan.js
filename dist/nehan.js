@@ -387,9 +387,9 @@ Nehan.Config = {
 
    @memberof Nehan.Config
    @type {String}
-   @default "https://raw.githubusercontent.com/tategakibunko/nehan.js/master/char-img"
+   @default "https://raw.githubusercontent.com/take-i/nehan.js/master/char-img"
    */
-  fontImgRoot:"https://raw.githubusercontent.com/tategakibunko/nehan.js/master/char-img",
+  fontImgRoot:"https://raw.githubusercontent.com/take-i/nehan.js/master/char-img",
 
   /**
    pre defined font-size keywords
