@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>nehan5 layout test</title>
+    <meta content="ja" name="content-language">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- styles -->
+    <link href="../css/nehan.css" rel="stylesheet">
+    <link href="catalog5.css" rel="stylesheet">
+    <!--
+    <link href="https://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" rel="stylesheet">
+    -->
+    <style type="text/css">
+      pre.prettyprinted{
+      background-color:white;
+      }
+      #test-menu{
+        font-size:12px;
+      }
+    </style>
+
+    <!-- scripts -->
+    <!-- third library for utility -->
+    <!-- but notice that any third libs are not required for nehan.js itself. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="md5.js"></script>
+
+    <!-- core -->
+    <script type="text/javascript" src="../dist/nehan.js"></script>
+
+    <!-- external lib -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      /*"HTML-CSS":{
+	styles:{".MathJax":{"font-size":"100%"}}
+      },*/
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <!-- tiny plugin examples, note that these are not required for general purpose. -->
+    <script type="text/javascript" src="nehan.font-awesome.js"></script>
+    <script type="text/javascript" src="nehan.speak.js"></script>
+    <script type="text/javascript" src="nehan.tip.js"></script>
+    <script type="text/javascript" src="nehan.gravatar.js"></script>
+    <script type="text/javascript" src="nehan.lazy.js"></script>
+    <script type="text/javascript" src="nehan.prettify.js"></script>
+    <script type="text/javascript" src="nehan.math.js"></script>
+
+    <!-- test scripts, just snipet set of sample text -->
+    <script type="text/javascript" src="test-text.js"></script>
+    <script type="text/javascript" src="test-snipet.js"></script>
+    <script type="text/javascript" src="test-script.js"></script>
+
+    <!-- This is important example, because you can see 'how to define style in nehan.js' -->
+    <script type="text/javascript" src="test-styles.js"></script>
+
+    <!-- example layouter -->
+    <script type="text/javascript" src="catalog5.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <ul id="test-menu"></ul>
+      <div class="results">
+	<textarea id="source"></textarea>
+	<div id="result-vert"></div>
+	<div id="result-hori"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,276 @@
+===============================================================================
+Preliminary notes:
+------------------
+Mark "o": new feature
+Mark "*": bug fixed.
+Mark "!": change that can break compatibility with older version
+===============================================================================
+
+version 5.5.10 2018/10/15
+========================
+o Add semantic styles.
+
+version 5.5.9 2018/10/14
+========================
+o Support newer MS Edge.
+
+version 5.5.8 2017/11/27
+========================
+* Remove some controll code by preprocessor.
+
+version 5.5.7 2017/03/09
+========================
+o Use vert glyph for "HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK"(U+77F0).
+* Fix browser detection(Microsoft Edge).
+! Force enable vert glyph if device is apple mobile family.
+! Use 'justify' for text-align of <body> by default.
+! Remove some default style.
+
+version 5.5.6 2017/01/28
+========================
+! Fix error of user-agent detection(chrome for ios).
+
+version 5.5.5 2017/01/15
+========================
+* Store anchor pos even if markup content is empty(<a name='foo'></a>).
+! Fix error of user-agent detection(chrome for android).
+
+version 5.5.4 2016/09/21
+========================
+o Support text-combine-upright for firefox(>=48) and ie(>=11).
+* Fix <rb> bug(firefox).
+
+version 5.5.3 2016/07/03
+========================
+o Add Nehan.Config.rexWord(lexing rule of word token).
+* Break page when break-before is set to 'always' even if DocumentContext.pageNo is zero.
+
+version 5.5.2 2016/5/20
+========================
+* Fix invalid updation(Document.setStyle).
+
+version 5.5.1 2016/4/24
+========================
+o Add Nehan.Config.mathjax for configuration of MathJax typesetting.
+o Support word-break for software hyphen(&shy;).
+o Support nth-child pseudo-class.
+* Fix hyphenation bug in some case.
+* Fix syntax error of shorthand css for font.
+* Fix nth-child order for some cases.
+* Skip too large word element.
+! Now 'onload' callback for selector is treated as 'SelectorContext -> unit'(not return Object as css values).
+
+version 5.5.0 2016/1/16
+========================
+o Support list-style-position:inside.
+o Support shorthanded font setting.
+o Add Nehan.createRootContext, Nehan.createRootGenerator.
+o Support pseudo-class :matches, :not, :lang.
+o Support functional value for selector entry.
+o Experimental support text-orientation:sideways, upright, mixed.
+o Use native text-combine(-upright) if supported.
+o Add Nehan.Preloads, module for loading statically sized resources before parsing.
+o Support MathJax feature(experimental).
+* Treat surrogate pair as single character.
+* More strict edge cancel for block level.
+! [deprecated] Nehan.LexingRule(use Nehan.setSingleTagName instead).
+! [deprecated] Nehan.Rgb, Nehan.Palette, Nehan.Colors.
+! [deprecated] Nehan.PagedElement(use Nehan.Document instead).
+! [rename] attribute 'pasted' is renamed to 'lazy'.
+
+version 5.4.0 2015/12/2
+========================
+o Add Nehan::Document.
+o Add new callback 'onPage'.
+o Refine whole structure.
+! Nehan.createEngine, Nehan.setup, Nehan.PageStream are removed.
+
+version 5.3.4 2015/10/26
+========================
+* Fix wrong ligature range.
+
+version 5.3.3 2015/10/25
+========================
+o Avoid generating child generator if not required.
+o Support typographic ligature.
+* Disabled vertical glyph on nintendo browser.
+
+version 5.3.2 2015/09/23
+========================
+o Enable vertical glyph for Firefox(ver >= 41).
+
+version 5.3.1 2015/08/27
+========================
+o Support logical float clearance(clear:start, clear:end, clear:both).
+o Support text-justify:justify.
+o Cache mached static selector for each style(speed up about 15%).
+* Fix css property bug when it's written by camel cased style.
+* Stop overwriting to prototype, so now Nehan.Char.prototype.constructor.name is "Char" for example.
+
+version 5.3.0 2015/07/14
+========================
+o Add tree object to page output.
+o Add new option 'capturePageText' added to Nehan.PageStream::asyncGet or Nehan.PagedElement::setContent for adding text node to page object.
+o Add new  method 'filter' to 'Nehan::PagedElement' and 'Nehan::PageStream'.
+o Enable vertical glyph for IE >= 10.
+! Change callback argument of onProgress and onComplete in Nehan::PageStream and Nehan::PagedElement.
+! Config.capture is removed.
+
+version 5.2.0 2015/07/02
+========================
+! Now class selectors and id selectors are not required to be "nehan-" prefixed in setStyle method.
+! Now you can use not only chain case name but also camel case for style property.
+  Nehan.setStyle(".foo", {"font-size":"2em"}); // ok!
+  Nehan.setStyle(".foo", {fontSize:"2em"}); // ok!
+o Add new parameter maxPageCount to PageStream::syncGet, PageStream.asyncGet, PagedElement::asyncGet.
+o Export shared modules to outside of engine closure.
+* Fix emphasis size and position.
+* Fix half size kana position.
+
+version 5.1.0 2015/06/08
+========================
+o Add new lexer and generator(TextLexer, TextGenerator), so now inline element and text node are devided into different tree.
+o Support last-child, last-of-type detection.
+o Support margin cancellation of elements floated or conctructed with different block flow.
+o Add new callback 'onblock', 'online', 'ontext' when called document is converted into dom for each layout level.
+  'onblock' is called after block element is converted,
+  'online' is called after anonymous line in block element is converted,
+  'ontext' is called after text-element in anonymous line is converted.
+o Config.allowedInlineStyleProps is added.
+o Config.maxYieldCount is added.
+o Config.danglingJustify is added.
+o Add Display.spaceSizeRate, to support various kind of space strictly.
+* Fix float bug in horizontal mode(see "float" at example/catalog5.html).
+* Fix baseline problem in many case.
+* Fix spacing between full-size dash for IE.
+* Fix some kerning space.
+! Remove LexingRule::addSingleTagByRex.
+! Not throw exception if page_no not found at PagedElement::setPage(page_no).
+! Fix page-break bug, and delete BreakAfterGenerator.
+! Remove FilteredTokenStream.
+
+version 5.0.5 2015/03/06
+========================
+o new method "addContent" for NehanPagedElement to push addional text to paged-element.
+o add "nehan-clone" class to the blocks generated by cloned style.
+o add "data-root-block-id" attribute to output dom for the blocks of direct children of body.
+o add Config.disableInlineStyle to disable inline style or not.
+o Nehan.createEngine is added, now Nehan.setup is alias name of this function(remained for backward compatibility).
+* fix too wide extent of ruby line.
+* treat "true" or "false" value in dataset as 'boolean'.
+* disable margin-after, margin-before of inline element.
+* fix justify bug in some rare case.
+! rename LayoutContext(layout-context.js) to CursorContext(cursor-context.js).
+! rename Layout(layout.js) to Display(display.js).
+! rename 'layout' in optinal argument for Nehan.setup to 'display'.
+
+version 5.0.4 2014/12/8
+========================
+o support display:none
+o set unique id as "data-block-id" for every block elements.
+o set unique id(nehan-header-xxx) and common class(nehan-header) for every header eleemnts.
+o add unique engine id to each header_id to handle the case multi-engines are running in single page.
+! extract Client and Env as global module.
+! change task runner from grunt -> gulp.
+* fix line-break bug(double line-break).
+* switch from float-generator to original parent generator if rest space is exhausted.
+
+version 5.0.3 2014/08/05
+=========================
+o new interface 'Nehan.createPagedElement' is created. more abstract layer and easy to use.
+o add plugin for gravator(nehan.gravator.js)
+o add plugin(utility tag <pasted>)
+* fix bug(updating selector value is failed when new value is object and old value is null).
+
+
+version 5.0.2 2014/06/26
+=========================
+o regexp name selector is supported.
+o to define custom single tag, add lexing-rule interfaces(setSingleTag, setSingleTagRex).
+o enabled selector of multiple css classes like 'div.nehan-xxx.nehan-yyy.nehan-zzz'.
+o enabled margin cancel.
+o support 'auto' as 'table-layout'.
+o support word-break property.
+o add plugins directory.
+o add plugins(font-awesome, speak, tip).
+* eval unmanaged css props before store
+
+version 5.0.1 2014/05/13
+=========================
+o now 'oncreate' property is enabled for selector value,
+  called when layout is evaluated and dom element is created.
+o global style interfaces Nehan.setStyle(or Nehan.setStyles) are added.
+! now module UnitSize is included in StyleContext class.
+
+version 5.0.0 2014/04/25
+=========================
+o more complex float supported, not only static size float, but also dynamic block element can be floated.
+! callback argument for functional value and callback is changed,
+  SelectorContext is for functional css value, and SelectorCallbackContext is for 'onload' callback.
+! for many future are updated, remove the older test folter, so we must create newer one(TODO).
+
+version 4.0.11 2014/xx/xx
+=========================
+* fix trident rotation bug.
+* use 'white-space:pre' instead of tag name.
+* fix bug about rotation of alphabet in IE9+.
+o add Config.iboxEnable for security reason.
+o add Tag::getDatasetAttrsRaw to get attributes with "data-" prefixes.
+o support z-index
+o support position:absolute
+o enabled vert-glyph for safari(ver >= 5)
+
+version 4.0.10, 2013/12/04
+=========================
+* fix typo in text-empha-style(double circle).
+o enabled title attribute for link tag.
+
+version 4.0.9, 2013/12/04
+=========================
+! rewrite class inheritance(closure library based) for faster constructor.
+
+version 4.0.8, 2013/11/28
+=========================
+* fix some illegal header-context overwriting.
+
+version 4.0.7, 2013/11/22
+=========================
+* fix css for Meiryo font trouble(not displayed properly in some charactors).
+
+version 4.0.6, 2013/11/18
+==========================
+* fix bug about anchor data in document-context(caused by typo).
+
+version 4.0.5, 2013/11/18
+==========================
+* fix bug about outline-context when secondary section root(like figure) appears.
+
+version 4.0.4, 2013/11/14
+==========================
+* fix font color of image charactor bug in IE,Firefox.
+
+version 4.0.3, 2013/11/14
+==========================
+o improve inline performance
+o now onload(which takes functional value) is available for all selector.
+o now nth-child, nth-of-type available as functional value.
+o support display:none.
+
+version 4.0.2, 2013/07/09
+==========================
+o use requestAnimationFrame if enable.
+o new css property border-style, border-color supported.
+! rename style property "border" to "border-width".
+! rename addRule to setStyle.
+! remove class Selectors.
+
+version 4.0.1, 2013/05/01
+==========================
+o new class Slector, Selectors(selector.js, selectors.js) to handle more complex selector.
+o cache style object for each tag, to increase performance(tag.js).
+o new engine method addRule, addRules, getRule are now exported(native access to Style object is disabled).
+* remove useless line that is created when inline-generator is broken by block tag without any text tokens.
+
+version 4.0.0, 2013/04/27
+==========================
+o first release
